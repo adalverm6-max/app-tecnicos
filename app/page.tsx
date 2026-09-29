@@ -455,7 +455,7 @@ export default function Home() {
                       rel="noopener noreferrer"
                       className="bg-white p-3 rounded-lg border border-gray-200 flex flex-col items-center hover:shadow-md transition cursor-pointer"
                     >
-                      <QRCodeSVG value={`https://tekpro-final.vercel.app/equipment/${eq.id}`}
+                      <QRCodeSVG value={`https://tekpro-sistema-v1.vercel.app/equipment/${eq.id}`}
                       <span className="text-[10px] text-blue-600 hover:underline mt-2 font-mono font-medium">Ver Hoja de Vida ↗</span>
                     </a>
                   </div>
