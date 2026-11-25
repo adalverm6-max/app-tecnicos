@@ -1,5 +1,4 @@
 import { supabase } from '@/lib/supabase'
-import { notFound } from 'next/navigation'
 
 export const revalidate = 0
 
@@ -10,7 +9,6 @@ export default async function EquipmentDetailPage({
 }) {
   const { id } = await params
 
-  // Consultar la base de datos real en Supabase
   const { data: equipo, error } = await supabase
     .from('equipos')
     .select('*')
@@ -18,7 +16,17 @@ export default async function EquipmentDetailPage({
     .single()
 
   if (error || !equipo) {
-    notFound()
+    return (
+      <div className="min-h-screen bg-slate-900 text-white p-6 flex flex-col items-center justify-center">
+        <div className="max-w-md w-full bg-slate-800 rounded-xl p-6 border border-red-500/50">
+          <h1 className="text-xl font-bold text-red-400">Diagnóstico de conexión</h1>
+          <p className="mt-2 text-sm text-slate-300">ID buscado: <strong>{id}</strong></p>
+          <pre className="mt-4 bg-slate-950 p-4 rounded text-xs text-amber-300 overflow-auto">
+            {JSON.stringify({ error, equipo }, null, 2)}
+          </pre>
+        </div>
+      </div>
+    )
   }
 
   return (
